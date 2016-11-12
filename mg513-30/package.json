@@ -1,0 +1,7 @@
+{
+    "name": "mg513-30",
+    "version": "1.0.1",
+    "description": "encoder of MG513-30 DC motor",
+    "author": "Young",
+    "main": "src/index.js"
+}

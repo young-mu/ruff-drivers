@@ -1,0 +1,7 @@
+{
+    "name": "gy-521",
+    "version": "1.0.5",
+    "description": "6-axis gyroscope module",
+    "author": "Young",
+    "main": "src/index.js"
+}

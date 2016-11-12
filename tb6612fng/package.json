@@ -1,0 +1,7 @@
+{
+    "name": "tb6612fng",
+    "version": "1.0.0",
+    "description": "Two-way DC motor controller ",
+    "author": "Young",
+    "main": "src/index.js"
+}

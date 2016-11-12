@@ -1,0 +1,7 @@
+{
+    "name": "sds011",
+    "version": "1.0.0",
+    "description": "Air quality index (PM2.5 and PM10) module",
+    "author": "Young",
+    "main": "src/index.js"
+}

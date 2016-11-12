@@ -1,0 +1,23 @@
+{
+    "models": [
+        "GY-521"
+    ],
+    "args": {
+        "accelRange": {
+            "type": "number",
+            "default": 2
+        },
+        "gyroRange": {
+            "type": "number",
+            "default": 250
+        }
+    },
+    "inputs": {
+        "i2c": {
+            "type": "i2c",
+            "args": {
+                "address": 104
+            }
+        }
+    }
+}

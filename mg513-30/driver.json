@@ -1,0 +1,13 @@
+{
+    "models": [
+        "MG513-30"
+    ],
+    "args": {
+        "ppr": 390
+    },
+    "inputs": {
+        "qei": {
+            "type": "qei"
+        }
+    }
+}

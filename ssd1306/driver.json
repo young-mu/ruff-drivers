@@ -1,0 +1,13 @@
+{
+    "models": [
+        "SSD1306"
+    ],
+    "inputs": {
+        "i2c": {
+            "type": "i2c",
+            "args": {
+                "address": 60
+            }
+        }
+    }
+}

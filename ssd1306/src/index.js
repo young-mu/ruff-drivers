@@ -11,7 +11,7 @@ var OLED_DATA = 0x40;
 var OLED_WIDTH = 128;
 var OLED_HEIGHT = 8;
 
-function oled_init (obj) {
+function oledInit (obj) {
     // turn off oled panel
     obj._i2c.writeByte(OLED_CMD, 0xAE);
 
@@ -112,6 +112,7 @@ function printChar (that, xPos, yPos, char, isBigChar) {
 
 function print (xPos, yPos, string, isBigChar) {
     var that = this;
+    isBigChar = isBigChar === undefined ? false : isBigChar;
     string.split('').forEach(function (e) {
         printChar(that, xPos, yPos, e, isBigChar);
         xPos += (isBigChar ? bc.width : lc.width);
@@ -147,7 +148,7 @@ var prototype = {
 module.exports = driver({
     attach: function (inputs, context) {
         this._i2c = inputs['i2c'];
-        oled_init(this);
+        oledInit(this);
         this.clear();
         this.setXY(0, 0);
     },

@@ -1,9 +1,15 @@
 'use strict';
 
 var driver = require('ruff-driver');
+var bc = require('./bc.js');
+var lc = require('./lc.js');
+var zh = require('./zh.js');
 
 var OLED_CMD = 0x00;
 var OLED_DATA = 0x40;
+
+var OLED_WIDTH = 128;
+var OLED_HEIGHT = 8;
 
 function oled_init (obj) {
     // turn off oled panel
@@ -76,24 +82,66 @@ function setXY (xPos, yPos) {
     this._i2c.writeByte(OLED_CMD, xPosL);
 }
 
-function print (data) {
-    this._i2c.writeByte(OLED_DATA, data);
-}
-
 function clear () {
     this.setXY(0, 0);
-    for (var yPos = 0; yPos < 8; yPos++) {
+    for (var yPos = 0; OLED_HEIGHT < 8; yPos++) {
         this.setXY(0, yPos);
-        for (var xPos = 0; xPos < 128; xPos++) {
-            this.print(0x0);
+        for (var xPos = 0; xPos < OLED_WIDTH; xPos++) {
+            this._i2c.writeByte(OLED_DATA, 0x00);
         }
     }
 }
 
+function printChar (that, xPos, yPos, char, isBigChar) {
+    if (isBigChar) {
+        that.setXY(xPos, yPos);
+        bc.table[char].slice(0, bc.length / 2).forEach(function (e) {
+            that._i2c.writeByte(OLED_DATA, e);
+        });
+        that.setXY(xPos, yPos + 1);
+        bc.table[char].slice(bc.length/ 2, bc.length).forEach(function (e) {
+            that._i2c.writeByte(OLED_DATA, e);
+        });
+    } else {
+        that.setXY(xPos, yPos);
+        lc.table[char].slice(0, lc.length).forEach(function (e) {
+            that._i2c.writeByte(OLED_DATA, e);
+        });
+    }
+}
+
+function print (xPos, yPos, string, isBigChar) {
+    var that = this;
+    string.split('').forEach(function (e) {
+        printChar(that, xPos, yPos, e, isBigChar);
+        xPos += (isBigChar ? bc.width : lc.width);
+    });
+}
+
+function printZhChar (that, xPos, yPos, char) {
+    that.setXY(xPos, yPos);
+    zh.table[char].slice(0, zh.length / 2).forEach(function (e) {
+        that._i2c.writeByte(OLED_DATA, e);
+    });
+    that.setXY(xPos, yPos + 1);
+    zh.table[char].slice(zh.length / 2, zh.length).forEach(function (e) {
+        that._i2c.writeByte(OLED_DATA, e);
+    });
+}
+
+function printZh (xPos, yPos, string) {
+    var that = this;
+    string.split('').forEach(function (e) {
+        printZhChar(that, xPos, yPos, e);
+        xPos += zh.width;
+    });
+}
+
 var prototype = {
     setXY: setXY,
+    clear: clear,
     print: print,
-    clear: clear
+    printZh: printZh
 };
 
 module.exports = driver({

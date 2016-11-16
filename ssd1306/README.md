@@ -62,7 +62,3 @@ Little Character | 6 x 8
 Chinese Character | 16 x 16
 
 > Now Chinese Character is not fully supported due to lack of font library.
-
-## License
-
-MIT

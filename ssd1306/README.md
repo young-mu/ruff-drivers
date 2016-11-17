@@ -1,5 +1,7 @@
 # OLED Display Panel Ruff Driver
 
+## Device
+
 - [ssd1306](https://rap.ruff.io/devices/ssd1306)
 
 ## Installation

@@ -17,11 +17,11 @@
 $('#<device-id>').print(0, 0, 'Hello, Ruff', true);
 ```
 
-<div align="center">    
+<div align="center">
 <img src="https://raw.githubusercontent.com/young-mu/ruff-drivers/master/ssd1306/res/demo_1.jpg" width = "500" height = "245" alt="DEMO_1" />
 </div>
 
-<div align="center">    
+<div align="center">
 <img src="https://raw.githubusercontent.com/young-mu/ruff-drivers/master/ssd1306/res/demo_2.jpg" width = "500" height = "345" alt="DEMO_2" />
 </div>
 
@@ -49,7 +49,7 @@ Print a Chinese *string* on panel coordinate (*x*, *y*). One Chinese character s
 
 One 0.96-inch OLED display panel size is 128x64 (128-dot width by 64-dot height) as shown in figure below.
 
-<div align="center">    
+<div align="center">
 <img src="https://raw.githubusercontent.com/young-mu/ruff-drivers/master/ssd1306/res/note.png" width = "500" height = "274" alt="NOTE" />
 </div>
 

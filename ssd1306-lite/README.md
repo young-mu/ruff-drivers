@@ -19,6 +19,10 @@
 $('#<device-id>').print(0, 0, 'Hello, Ruff');
 ```
 
+<div align="center">
+<img src="https://raw.githubusercontent.com/young-mu/ruff-drivers/master/ssd1306-lite/res/demo_2.jpg" width = "500" height = "407" alt="DEMO_1" />
+</div>
+
 ## API Reference
 
 ### Methods

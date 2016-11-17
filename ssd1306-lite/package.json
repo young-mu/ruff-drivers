@@ -1,0 +1,21 @@
+{
+    "name": "ssd1306-lite",
+    "version": "1.0.1",
+    "description": "0.96-inch OLED display panel SSD1306 driver for MCU",
+    "author": "Young",
+    "main": "src/index.js",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/young-mu/ruff-drivers/tree/master/ssd1306-lite"
+    },
+    "bugs": {
+        "url": "https://github.com/young-mu/ruff-drivers/tree/master/ssd1306-lite/issues"
+    },
+    "homepage": "https://github.com/young-mu/ruff-drivers/tree/master/ssd1306-lite",
+    "keywords": [
+        "OLED",
+        "SSD1306",
+        "MCU"
+    ]
+}

@@ -84,7 +84,7 @@ function setXY (xPos, yPos) {
 
 function clear () {
     this.setXY(0, 0);
-    for (var yPos = 0; OLED_HEIGHT < 8; yPos++) {
+    for (var yPos = 0; yPos < OLED_HEIGHT; yPos++) {
         this.setXY(0, yPos);
         for (var xPos = 0; xPos < OLED_WIDTH; xPos++) {
             this._i2c.writeByte(OLED_DATA, 0x00);

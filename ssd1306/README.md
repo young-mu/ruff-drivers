@@ -15,6 +15,8 @@
 
 Supposed \<device-id\> is **oled** in the following demos.
 
+### Demo 1
+
 ```js
 $('#oled').print(0, 0, 'Hello Ruff');
 $('#oled').print(0, 2, 'Hello Ruff', false);
@@ -26,6 +28,8 @@ $('#oled').printZh(0, 6, '你好');
 <img src="https://raw.githubusercontent.com/young-mu/ruff-drivers/master/ssd1306/res/demo_char.jpg" width = "375" height = "500" alt="DEMO_CHAR" />
 </div>
 
+### Demo 2
+
 ```js
  $('#oled').printQrcode();
 ```
@@ -33,6 +37,8 @@ $('#oled').printZh(0, 6, '你好');
 <div align="center">
 <img src="https://raw.githubusercontent.com/young-mu/ruff-drivers/master/ssd1306/res/demo_qrcode_1.jpg" width = "375" height = "500" alt="DEMO_QRCODE_1" />
 </div>
+
+### Demo 3
 
 ```js
  $('#oled').printQrcode(true);

@@ -4,6 +4,7 @@ var driver = require('ruff-driver');
 var bc = require('./bc.js');
 var lc = require('./lc.js');
 var zh = require('./zh.js');
+var qrcode = require('./qrcode.js');
 
 var OLED_CMD = 0x00;
 var OLED_DATA = 0x40;
@@ -82,18 +83,24 @@ function setXY (xPos, yPos) {
     this._i2c.writeByte(OLED_CMD, xPosL);
 }
 
-function clear () {
+function clear (isReverse) {
+    isReverse = (isReverse === undefined ? false : isReverse);
     this.setXY(0, 0);
     for (var yPos = 0; yPos < OLED_HEIGHT; yPos++) {
         this.setXY(0, yPos);
         for (var xPos = 0; xPos < OLED_WIDTH; xPos++) {
-            this._i2c.writeByte(OLED_DATA, 0x00);
+            this._i2c.writeByte(OLED_DATA, isReverse === true ? 0xFF : 0x00);
         }
     }
 }
 
-function printChar (that, xPos, yPos, char, isBigChar) {
-    if (isBigChar) {
+function printChar (that, xPos, yPos, char, isLittleChar) {
+    if (isLittleChar) {
+        that.setXY(xPos, yPos);
+        lc.table[char].slice(0, lc.length).forEach(function (e) {
+            that._i2c.writeByte(OLED_DATA, e);
+        });
+    } else {
         that.setXY(xPos, yPos);
         bc.table[char].slice(0, bc.length / 2).forEach(function (e) {
             that._i2c.writeByte(OLED_DATA, e);
@@ -102,20 +109,15 @@ function printChar (that, xPos, yPos, char, isBigChar) {
         bc.table[char].slice(bc.length/ 2, bc.length).forEach(function (e) {
             that._i2c.writeByte(OLED_DATA, e);
         });
-    } else {
-        that.setXY(xPos, yPos);
-        lc.table[char].slice(0, lc.length).forEach(function (e) {
-            that._i2c.writeByte(OLED_DATA, e);
-        });
     }
 }
 
-function print (xPos, yPos, string, isBigChar) {
+function print (xPos, yPos, string, isLittleChar) {
     var that = this;
-    isBigChar = isBigChar === undefined ? false : isBigChar;
+    isLittleChar = (isLittleChar === undefined ? false : isLittleChar);
     string.split('').forEach(function (e) {
-        printChar(that, xPos, yPos, e, isBigChar);
-        xPos += (isBigChar ? bc.width : lc.width);
+        printChar(that, xPos, yPos, e, isLittleChar);
+        xPos += (isLittleChar ? lc.width : bc.width);
     });
 }
 
@@ -138,11 +140,37 @@ function printZh (xPos, yPos, string) {
     });
 }
 
+function printQrcode (isReverse) {
+    var that = this;
+    var xPos, yPos;
+
+    if (isReverse) {
+        that.clear(true);
+        that.setXY(qrcode.startX, qrcode.startY);
+        for (yPos = 0; yPos < Math.ceil(qrcode.height / 8); yPos++) {
+            that.setXY(qrcode.startX, qrcode.startY + yPos);
+            for (xPos = 0; xPos < qrcode.width; xPos++) {
+                that._i2c.writeByte(OLED_DATA, 0xFF - qrcode.qrcode[xPos + yPos * qrcode.width]);
+            }
+        }
+    } else {
+        that.clear();
+        that.setXY(qrcode.startX, qrcode.startY);
+        for (yPos = 0; yPos < Math.ceil(qrcode.height / 8); yPos++) {
+            that.setXY(qrcode.startX, qrcode.startY + yPos);
+            for (xPos = 0; xPos < qrcode.width; xPos++) {
+                that._i2c.writeByte(OLED_DATA, qrcode.qrcode[xPos + yPos * qrcode.width]);
+            }
+        }
+    }
+}
+
 var prototype = {
     setXY: setXY,
     clear: clear,
     print: print,
-    printZh: printZh
+    printZh: printZh,
+    printQrcode: printQrcode
 };
 
 module.exports = driver({

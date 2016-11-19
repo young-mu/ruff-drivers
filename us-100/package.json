@@ -1,0 +1,21 @@
+{
+    "name": "Ultrasound Distance Sensor",
+    "version": "1.0.0",
+    "description": "An Ultrasound Distance Sensor with UART interface",
+    "author": "Young",
+    "main": "src/index.js",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/young-mu/ruff-drivers/tree/master/us-100"
+    },
+    "bugs": {
+        "url": "https://github.com/young-mu/ruff-drivers/tree/master/us-100/issues"
+    },
+    "homepage": "https://github.com/young-mu/ruff-drivers/tree/master/us-100",
+    "keywords": [
+        "Ultrasound",
+        "Distance",
+        "US-100"
+    ]
+}

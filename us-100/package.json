@@ -1,5 +1,5 @@
 {
-    "name": "Ultrasound Distance Sensor",
+    "name": "us-100",
     "version": "1.0.0",
     "description": "An Ultrasound Distance Sensor with UART interface",
     "author": "Young",

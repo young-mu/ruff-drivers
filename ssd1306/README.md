@@ -20,7 +20,7 @@ Supposed \<device-id\> is **oled** in the following demos.
 ```js
 $('#oled').print(0, 0, 'Hello Ruff');
 $('#oled').print(0, 2, 'Hello Ruff', false);
-$('#oled').print(0, 4, 'Hello Ruff';
+$('#oled').print(0, 4, 'Hello Ruff');
 $('#oled').printZh(0, 6, '你好');
 ```
 

@@ -174,11 +174,28 @@ var prototype = {
 };
 
 module.exports = driver({
+
     attach: function (inputs, context) {
         this._i2c = inputs['i2c'];
+
+        // When i2c writing is intensive, RT5350 will expose an i2c hardware bug,
+        // this workaround is avoid it by writing again after first i2c write operation fails.
+        var that = this;
+        this._i2c._writeByte = this._i2c.writeByte;
+        this._i2c.writeByte = function (command, value, callback) {
+            try {
+                that._i2c._writeByte(command, value, callback);
+            } catch (error) {
+                console.log('i2c write error occurs, retry ...');
+                that._i2c._writeByte(command, value, callback);
+            }
+        };
+
         oledInit(this);
         this.clear();
         this.setXY(0, 0);
     },
+
     exports: prototype
+
 });

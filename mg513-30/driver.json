@@ -6,6 +6,12 @@
         "ppr": 390
     },
     "inputs": {
+        "vcc": {
+            "type": "power",
+            "args": {
+                "voltage": "5v"
+            }
+        },
         "qei": {
             "type": "qei"
         }

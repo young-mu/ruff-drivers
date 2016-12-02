@@ -3,6 +3,33 @@
         "TB6612FNG"
     ],
     "inputs": {
+        "vcc-1": {
+            "type": "power",
+            "args": {
+                "voltage": "5v"
+            }
+        },
+        "vcc-2": {
+            "type": "power",
+            "args": {
+                "voltage": "5v"
+            }
+        },
+        "vcc-3": {
+            "type": "power",
+            "args": {
+                "voltage": "12v"
+            }
+        },
+        "gnd-1": {
+            "type": "ground"
+        },
+        "gnd-2": {
+            "type": "ground"
+        },
+        "gnd-3": {
+            "type": "ground"
+        },
         "pwm-A": {
             "type": "pwm",
             "args": {

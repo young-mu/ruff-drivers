@@ -12,6 +12,9 @@
                 "voltage": "5v"
             }
         },
+        "gnd": {
+            "type": "ground"
+        },
         "qei": {
             "type": "qei"
         }

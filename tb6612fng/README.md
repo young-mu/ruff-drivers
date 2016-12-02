@@ -1,41 +1,30 @@
-# DC motor controller Driver for Ruff
+# DC motor controller Driver
 
 Two-way DC motor controller with PWM and GPIO interface
 
-## Supported Engines
-
-* Ruff MCU
-
-## Supported Models
+## Device Model
 
 - [tb6612fng](https://rap.ruff.io/devices/tb6612fng)
 
-## Installing
-
-Execute following command and enter a **supported model** to install.
+## Install
 
 ```sh
-# Please replace `<device-id>` with a proper ID.
-# And this will be what you are going to query while `$('#<device-id>')`.
-rap device add <device-id>
-
-# Then enter a supported model, for example:
-# ? model: tb6612fng
+> rap device add --model tb6612fng --id <device-id>
 ```
 
 ## Usage
 
-Here is the usage of this driver.
+Supposed \<device-id\> is `motor` in the following demos.
 
 ```js
-$('#<device-id>').forwardRotateA(0.5);
-$('#<device-id>').forwardRotateB(0.5);
+$('#motor').forwardRotateA(0.5);
+$('#motor').forwardRotateB(0.5);
 
-$('#<device-id>').backwardRotateA(0.5);
-$('#<device-id>').backwardRotateB(0.5);
+$('#motor').backwardRotateA(0.5);
+$('#motor').backwardRotateB(0.5);
 
-$('#<device-id>').stopRotateA();
-$('#<device-id>').stopRotateB();
+$('#motor').stopRotateA();
+$('#motor').stopRotateB();
 ```
 
 ## API References
@@ -66,6 +55,8 @@ Control DC motor A to stop rotate.
 
 Control DC motor B to stop rotate.
 
-## License
+## Note
 
-MIT
+### Power supply
+
+You should supply **12V** power to the Ruff board (ruff-mbd-v1). If you can just supply 5V power, you should connect VM pin (vcc-3) on the tb6612fng chip to 5V pin (vdd-8/vdd-9/vdd-10/vdd-11) on the Ruff board (ruff-mbd-v1).

@@ -59,4 +59,6 @@ Control DC motor B to stop rotate.
 
 ### Power supply
 
-You should supply **12V** power to the Ruff board (ruff-mbd-v1). If you can just supply 5V power, you should connect VM pin (vcc-3) on the tb6612fng chip to 5V pin (vdd-8/vdd-9/vdd-10/vdd-11) on the Ruff board (ruff-mbd-v1).
+The more the power supply to VM pin is, the faster the motor rotates, if the rotation parameter is set as the maximum value (1).
+
+You'd better provide external **12V** power supplier to VM pin (vcc-3) and GND pin (gnd-3).

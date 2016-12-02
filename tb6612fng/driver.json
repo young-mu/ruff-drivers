@@ -18,7 +18,7 @@
         "vcc-3": {
             "type": "power",
             "args": {
-                "voltage": "12v"
+                "voltage": "5v"
             }
         },
         "gnd-1": {

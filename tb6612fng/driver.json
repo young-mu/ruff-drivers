@@ -33,7 +33,7 @@
         "pwm-A": {
             "type": "pwm",
             "args": {
-                "frequency": 10000
+                "frequency": 1000
             }
         },
         "gpio-A1": {
@@ -53,7 +53,7 @@
         "pwm-B": {
             "type": "pwm",
             "args": {
-                "frequency": 10000
+                "frequency": 1000
             }
         },
         "gpio-B1": {

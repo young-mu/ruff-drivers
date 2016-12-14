@@ -1,0 +1,21 @@
+{
+    "name": "drv8825-ext",
+    "version": "1.0.0",
+    "description": "Two-way PWM step motor driver extension board",
+    "author": "Young",
+    "main": "src/index.js",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/young-mu/ruff-drivers/tree/master/drv8825-ext"
+    },
+    "bugs": {
+        "url": "https://github.com/young-mu/ruff-drivers/tree/master/drv8825-ext/issues"
+    },
+    "homepage": "https://github.com/young-mu/ruff-drivers/tree/master/drv8825-ext",
+    "keywords": [
+        "Step Motor",
+        "DRV8825",
+        "PWM"
+    ]
+}

@@ -1,0 +1,56 @@
+{
+    "models": [
+        "DRV8825-EXT"
+    ],
+    "inputs": {
+        "vcc": {
+            "type": "power",
+            "args": {
+                "voltage": "24v"
+            }
+        },
+        "gnd": {
+            "type": "ground"
+        },
+        "pwm-A": {
+            "type": "pwm",
+            "args": {
+                "frequency": 300
+            }
+        },
+        "direction-A": {
+            "type": "gpio",
+            "args": {
+                "direction": "out",
+                "level": "low"
+            }
+        },
+        "enable-A": {
+            "type": "gpio",
+            "args": {
+                "direction": "out",
+                "level": "low"
+            }
+        },
+        "pwm-B": {
+            "type": "pwm",
+            "args": {
+                "frequency": 300
+            }
+        },
+        "direction-B": {
+            "type": "gpio",
+            "args": {
+                "direction": "out",
+                "level": "low"
+            }
+        },
+        "enable-B": {
+            "type": "gpio",
+            "args": {
+                "direction": "out",
+                "level": "low"
+            }
+        }
+    }
+}

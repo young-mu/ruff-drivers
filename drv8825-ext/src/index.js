@@ -71,7 +71,7 @@ module.exports = driver({
             }
 
             var freq = getFrequency(rpm);
-            this._pwmA.setFrequency(rpm);
+            this._pwmA.setFrequency(freq);
             this._directionA.write(Level.low);
             this._enableA.write(Level.low);
 

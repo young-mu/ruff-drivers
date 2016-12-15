@@ -1,6 +1,6 @@
 {
     "name": "drv8825-ext",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Two-way PWM step motor driver extension board",
     "author": "Young",
     "main": "src/index.js",

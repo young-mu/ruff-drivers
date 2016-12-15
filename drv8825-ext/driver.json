@@ -15,7 +15,7 @@
         "pwm-A": {
             "type": "pwm",
             "args": {
-                "frequency": 300
+                "duty": 0.5
             }
         },
         "direction-A": {
@@ -35,7 +35,7 @@
         "pwm-B": {
             "type": "pwm",
             "args": {
-                "frequency": 300
+                "duty": 0.5
             }
         },
         "direction-B": {

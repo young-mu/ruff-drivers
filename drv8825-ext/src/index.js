@@ -43,7 +43,7 @@ module.exports = driver({
     exports: {
         forwardRotateA: function (rpm, callback) {
             if (rpm > maxRpm || rpm < minRpm) {
-                console.log('rpm should NOT be more than 300');
+                console.log('rpm should be in [' + minRpm + ', ' + maxRpm + ']');
                 callback && callback(new Error('invalid rpm'));
                 return;
             }
@@ -57,7 +57,7 @@ module.exports = driver({
         },
         forwardRotateB: function (rpm, callback) {
             if (rpm > maxRpm || rpm < minRpm) {
-                console.log('rpm should NOT be more than 300');
+                console.log('rpm should be in [' + minRpm + ', ' + maxRpm + ']');
                 callback && callback(new Error('invalid rpm'));
                 return;
             }
@@ -72,7 +72,7 @@ module.exports = driver({
 
         backwardRotateA: function (rpm, callback) {
             if (rpm > maxRpm || rpm < minRpm) {
-                console.log('rpm should NOT be more than 300');
+                console.log('rpm should be in [' + minRpm + ', ' + maxRpm + ']');
                 callback && callback(new Error('invalid rpm'));
                 return;
             }
@@ -86,7 +86,7 @@ module.exports = driver({
         },
         backwardRotateB: function (rpm, callback) {
             if (rpm > maxRpm || rpm < minRpm) {
-                console.log('rpm should NOT be more than 300');
+                console.log('rpm should be in [' + minRpm + ', ' + maxRpm + ']');
                 callback && callback(new Error('invalid rpm'));
                 return;
             }

@@ -15,13 +15,13 @@ var microStep = 1; // M0/M1/M2 are all LOW level
 var getFrequency = function (rpm) {
     var ppr = 360 / stepAngle * microStep;
     var freq = rpm * ppr / 60;
-    console.log('rpm (' + rpm + ') => frequency (' + freq + ')');
+    //console.log('rpm (' + rpm + ') => frequency (' + freq + ')');
     return freq;
 };
 
 var getCount = function (angle) {
     var count = angle / stepAngle * microStep;
-    console.log('angle (' + angle + ') => count (' + count + ')');
+    //console.log('angle (' + angle + ') => count (' + count + ')');
     return count;
 };
 

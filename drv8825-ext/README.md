@@ -17,11 +17,14 @@ This driver is for two-way step motor driver extension board based on drv8825.
 Supposed \<device-id\> is `motor` in the following demo.
 
 ```js
-// control step motor A to rotate forward at 60 rpm speed.
+// control step motor A to rotate forward at 60 rpm speed
 $('#motor').forwardRotateA(60);
 
 // stop step motor rotation
 $('#motor').stopRotateA();
+
+// control step motor A to rotate 90 degree forwardly 
+$('#motor').forwardAngleA(90);
 ```
 
 ## API References
@@ -52,6 +55,22 @@ Control Step Motor A to stop rotate.
 
 Control Step Motor B to stop rotate.
 
+#### `forwardAngleA(angle[, callback])`
+
+Control Step Motor A to rotate `angle` angles forwardly.
+
+#### `forwardAngleB(angle[, callback])`
+
+Control Step Motor B to rotate `angle` angles forwardly.
+
+#### `backwardAngleA(angle[, callback])`
+
+Control Step Motor A to rotate `angle` angles backwardly.
+
+#### `backwardAngleB(angle[, callback])`
+
+Control Step Motor B to rotate `angle` angles backwardly.
+
 ## Supported OS
 
 Test passed on Ruff Lite v0.8.0
@@ -65,3 +84,12 @@ If `rpm` is less than 40, the step motor will vibrate with much noise. If `rpm` 
 ### About power supply
 
 You should provide external **24V** power supplier to this board.
+
+### About angle releated APIs
+
+Now these APIs (see below) are **experimental**. The speed of rotatation is based on frequency set by recent `setFrequency` call. 
+
+- `forwardAngleA`
+- `forwardAngleB`
+- `backwardAngleA`
+- `backwardAngleB`

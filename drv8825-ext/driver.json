@@ -3,10 +3,19 @@
         "DRV8825-EXT"
     ],
     "inputs": {
-        "vcc": {
+        "vcc-ext": {
             "type": "power",
             "args": {
                 "voltage": "24v"
+            }
+        },
+        "gnd-ext": {
+            "type": "ground"
+        },
+        "vcc": {
+            "type": "power",
+            "args": {
+                "voltage": "5v"
             }
         },
         "gnd": {

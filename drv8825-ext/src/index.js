@@ -15,7 +15,14 @@ var microStep = 1; // M0/M1/M2 are all LOW level
 var getFrequency = function (rpm) {
     var ppr = 360 / stepAngle * microStep;
     var freq = rpm * ppr / 60;
+    console.log('rpm (' + rpm + ') => frequency (' + freq + ')');
     return freq;
+};
+
+var getCount = function (angle) {
+    var count = angle / stepAngle * microStep;
+    console.log('angle (' + angle + ') => count (' + count + ')');
+    return count;
 };
 
 module.exports = driver({
@@ -101,7 +108,41 @@ module.exports = driver({
             this._enableB.write(Level.high);
 
             callback && callback(undefined);
-        }
+        },
+
+        forwardAngleA: function (angle, callback) {
+            var count = getCount(angle);
+            this._pwmA.setCount(count);
+            this._directionA.write(Level.high);
+            this._enableA.write(Level.low);
+
+            callback && callback(undefined);
+        },
+        forwardAngleB: function (angle, callback) {
+            var count = getCount(angle);
+            this._pwmB.setCount(count);
+            this._directionB.write(Level.high);
+            this._enableB.write(Level.low);
+
+            callback && callback(undefined);
+        },
+
+        backwardAngleA: function (angle, callback) {
+            var count = getCount(angle);
+            this._pwmA.setCount(count);
+            this._directionA.write(Level.low);
+            this._enableA.write(Level.low);
+
+            callback && callback(undefined);
+        },
+        backwardAngleB: function (angle, callback) {
+            var count = getCount(angle);
+            this._pwmB.setCount(count);
+            this._directionB.write(Level.low);
+            this._enableB.write(Level.low);
+
+            callback && callback(undefined);
+        },
     }
 
 });

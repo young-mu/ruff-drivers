@@ -1,7 +1,24 @@
 {
     "name": "gy-521",
-    "version": "1.0.5",
+    "version": "1.1.0",
     "description": "6-axis gyroscope module",
     "author": "Young",
-    "main": "src/index.js"
+    "main": "src/index.js",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/young-mu/ruff-drivers/tree/master/gy-521"
+    },
+    "bugs": {
+        "url": "https://github.com/young-mu/ruff-drivers/tree/master/gy-521/issues"
+    },
+    "homepage": "https://github.com/young-mu/ruff-drivers/tree/master/gy-521",
+    "keywords": [
+        "GY-521",
+        "MPU6050",
+        "I2C",
+        "Acceleration",
+        "Gyroscope",
+        "Angle"
+    ]
 }

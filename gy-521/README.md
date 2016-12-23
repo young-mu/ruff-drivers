@@ -1,84 +1,39 @@
-# GY-521 Driver for Ruff
+# 6-axis Gyroscropt Ruff Driver
 
 6-axis gyroscope module using MPU6050 with I2C interface
 
-## Supported Engines
-
-* Ruff MCU
-
-## Supported Models
+## Device
 
 - [gy-521](https://rap.ruff.io/devices/gy-521)
 
-## Installing
-
-Execute following command and enter a **supported model** to install.
+## Installation
 
 ```sh
-# Please replace `<device-id>` with a proper ID.
-# And this will be what you are going to query while `$('#<device-id>')`.
-rap device add <device-id>
-
-# Then enter a supported model, for example:
-# ? model: gy-521
-# ? value (number) for argument "accelRange": 2
-# ? value (number) for argument "gyroRange": 250
+> rap device add <device-id>
+> ? model: (<device-id>) ssd1306
+> ? value (number) for argument "accelRange": 2
+> ? value (number) for argument "gyroRange": 250
 ```
 
-### Arguments
+## Demo
 
-#### `accelRange`
 
-A number indicates range of acceleration value. It can be 2, 4, 8 or 16 only. The default value is 2.
-
-#### `gyroRange`
-
-A number indicates range of acceleration value. It can be 250, 500, 1000 or 2000 only. The default value is 250.
-
-## Usage
-
-Here is the usage of this driver.
-
-```js
+```javascript
+// get 3-axis (x/y/z) accelerations
 $('#<device-id>').getAcceleration(function (error, accel)) {
 	var accelX = accel[0];
 	var accelY = accel[1];
 	var accelZ = accel[2];
 });
-$('#<device-id>').getAccelerationX(function (error, accelX)) {
-});
-$('#<device-id>').getAccelerationY(function (error, accelY)) {
-});
-$('#<device-id>').getAccelerationZ(function (error, accelZ)) {
-});
 
+// get 3-axis (x/y/z) anglular speed
 $('#<device-id>').getGyroscope(function (error, gyro)) {
 	var gyroX = gyro[0];
 	var gyroY = gyro[1];
 	var gyroZ = gyro[2];
 });
-$('#<device-id>').getGyroscopeX(function (error, gyroX)) {
-});
-$('#<device-id>').getGyroscopeY(function (error, gyroY)) {
-});
-$('#<device-id>').getGyroscopeZ(function (error, gyroZ)) {
-});
 
-$('#<device-id>').getAngleX(function (error, angleX)) {
-});
-$('#<device-id>').getAngleY(function (error, angleY)) {
-});
-
-setInterval(function() {
-	$('#<device-id>').getFusedMotionX(cycle, function (error, angle, gyro)) {
-	});
-}, cycle);
-
-setInterval(function() {
-	$('#<device-id>').getFusedMotionY(cycle, function (error, angle, gyro)) {
-	});
-}, cycle);
-
+// get temperature
 $('#<device-id>').getTemperature(function (error, temp)) {
 });
 ```
@@ -174,7 +129,3 @@ The parameters of callback are (error, value1, value2), in which value1 is Y-axi
 Get the inner temperature inside module.
 
 The parameters of callback are (error, value), in which value is temperature value.
-
-## License
-
-MIT

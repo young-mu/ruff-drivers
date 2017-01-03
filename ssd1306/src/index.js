@@ -85,11 +85,13 @@ function setXY (xPos, yPos) {
 
 function clear (isReverse) {
     isReverse = (isReverse === undefined ? false : isReverse);
+    // avoid inner-loop judgement each time
+    var fillChar = isReverse == true ? 0xFF : 0x00;
     this.setXY(0, 0);
     for (var yPos = 0; yPos < OLED_HEIGHT; yPos++) {
         this.setXY(0, yPos);
         for (var xPos = 0; xPos < OLED_WIDTH; xPos++) {
-            this._i2c.writeByte(OLED_DATA, isReverse === true ? 0xFF : 0x00);
+            this._i2c.writeByte(OLED_DATA, fillChar);
         }
     }
 }
@@ -115,10 +117,31 @@ function printChar (that, xPos, yPos, char, isLittleChar) {
 function print (xPos, yPos, string, isLittleChar) {
     var that = this;
     isLittleChar = (isLittleChar === undefined ? false : isLittleChar);
+    var xPosIncr = isLittleChar ? lc.width : bc.width;
+    this.setXY(0, yPos);
+    for (var i = 0; i < xPos; i++) {
+        this._i2c.writeByte(OLED_DATA, 0x00);
+    }
+    if ( !isLittleChar) {
+        this.setXY(0, yPos + 1);
+        for (var i = 0; i < xPos; i++) {
+            this._i2c.writeByte(OLED_DATA, 0x00);
+        }
+    }
     string.split('').forEach(function (e) {
         printChar(that, xPos, yPos, e, isLittleChar);
-        xPos += (isLittleChar ? lc.width : bc.width);
+        xPos += xPosIncr;
     });
+    this.setXY(xPos, yPos);
+    for (var i = xPos; i < OLED_WIDTH+1; i++) {
+        this._i2c.writeByte(OLED_DATA, 0x00);
+    }
+    if ( !isLittleChar) {
+        this.setXY(xPos, yPos + 1);
+        for (var i = xPos; i < OLED_WIDTH+1; i++) {
+            this._i2c.writeByte(OLED_DATA, 0x00);
+        }
+    }
 }
 
 function printZhChar (that, xPos, yPos, char) {
@@ -134,10 +157,22 @@ function printZhChar (that, xPos, yPos, char) {
 
 function printZh (xPos, yPos, string) {
     var that = this;
+    for (var j = yPos; j < yPos + 2; j++) {
+        this.setXY(0, j);
+        for (var i = 0; i < xPos; i++) {
+            this._i2c.writeByte(OLED_DATA, 0x00);
+        }
+    }
     string.split('').forEach(function (e) {
         printZhChar(that, xPos, yPos, e);
         xPos += zh.width;
     });
+    for (var j = yPos; j < yPos + 2; j++) {
+        this.setXY(xPos, j);
+        for (var i = xPos; i < OLED_WIDTH+1; i++) {
+            this._i2c.writeByte(OLED_DATA, 0x00);
+        }
+    }
 }
 
 function printQrcode (isReverse) {

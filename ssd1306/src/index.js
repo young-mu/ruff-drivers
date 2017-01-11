@@ -4,7 +4,6 @@ var driver = require('ruff-driver');
 var bc = require('./bc.js');
 var lc = require('./lc.js');
 var zh = require('./zh.js');
-var qrcode = require('./qrcode.js');
 
 var OLED_CMD = 0x00;
 var OLED_DATA = 0x40;
@@ -12,7 +11,7 @@ var OLED_DATA = 0x40;
 var OLED_WIDTH = 128;
 var OLED_HEIGHT = 8;
 
-function oledInit (obj) {
+function oledInit(obj) {
     // turn off oled panel
     obj._i2c.writeByte(OLED_CMD, 0xAE);
 
@@ -71,7 +70,7 @@ function oledInit (obj) {
     obj._i2c.writeByte(OLED_CMD, 0xAF);
 }
 
-function setXY (xPos, yPos) {
+function setXY(xPos, yPos) {
     var xPosH = (0xF0 & xPos) >> 4;
     var xPosL = (0x0F & xPos);
 
@@ -83,7 +82,7 @@ function setXY (xPos, yPos) {
     this._i2c.writeByte(OLED_CMD, xPosL);
 }
 
-function clear (isReverse) {
+function clear(isReverse) {
     isReverse = (isReverse === undefined ? false : isReverse);
     // avoid inner-loop judgement each time
     var fillChar = isReverse == true ? 0xFF : 0x00;
@@ -96,7 +95,7 @@ function clear (isReverse) {
     }
 }
 
-function printChar (that, xPos, yPos, char, isLittleChar) {
+function printChar(that, xPos, yPos, char, isLittleChar) {
     if (isLittleChar) {
         that.setXY(xPos, yPos);
         lc.table[char].slice(0, lc.length).forEach(function (e) {
@@ -108,13 +107,13 @@ function printChar (that, xPos, yPos, char, isLittleChar) {
             that._i2c.writeByte(OLED_DATA, e);
         });
         that.setXY(xPos, yPos + 1);
-        bc.table[char].slice(bc.length/ 2, bc.length).forEach(function (e) {
+        bc.table[char].slice(bc.length / 2, bc.length).forEach(function (e) {
             that._i2c.writeByte(OLED_DATA, e);
         });
     }
 }
 
-function print (xPos, yPos, string, isLittleChar) {
+function print(xPos, yPos, string, isLittleChar) {
     var that = this;
     isLittleChar = (isLittleChar === undefined ? false : isLittleChar);
     var xPosIncr = isLittleChar ? lc.width : bc.width;
@@ -122,7 +121,7 @@ function print (xPos, yPos, string, isLittleChar) {
     for (var i = 0; i < xPos; i++) {
         this._i2c.writeByte(OLED_DATA, 0x00);
     }
-    if ( !isLittleChar) {
+    if (!isLittleChar) {
         this.setXY(0, yPos + 1);
         for (var i = 0; i < xPos; i++) {
             this._i2c.writeByte(OLED_DATA, 0x00);
@@ -133,18 +132,18 @@ function print (xPos, yPos, string, isLittleChar) {
         xPos += xPosIncr;
     });
     this.setXY(xPos, yPos);
-    for (var i = xPos; i < OLED_WIDTH+1; i++) {
+    for (var i = xPos; i < OLED_WIDTH + 1; i++) {
         this._i2c.writeByte(OLED_DATA, 0x00);
     }
-    if ( !isLittleChar) {
+    if (!isLittleChar) {
         this.setXY(xPos, yPos + 1);
-        for (var i = xPos; i < OLED_WIDTH+1; i++) {
+        for (var i = xPos; i < OLED_WIDTH + 1; i++) {
             this._i2c.writeByte(OLED_DATA, 0x00);
         }
     }
 }
 
-function printZhChar (that, xPos, yPos, char) {
+function printZhChar(that, xPos, yPos, char) {
     that.setXY(xPos, yPos);
     zh.table[char].slice(0, zh.length / 2).forEach(function (e) {
         that._i2c.writeByte(OLED_DATA, e);
@@ -155,7 +154,7 @@ function printZhChar (that, xPos, yPos, char) {
     });
 }
 
-function printZh (xPos, yPos, string) {
+function printZh(xPos, yPos, string) {
     var that = this;
     for (var j = yPos; j < yPos + 2; j++) {
         this.setXY(0, j);
@@ -169,33 +168,21 @@ function printZh (xPos, yPos, string) {
     });
     for (var j = yPos; j < yPos + 2; j++) {
         this.setXY(xPos, j);
-        for (var i = xPos; i < OLED_WIDTH+1; i++) {
+        for (var i = xPos; i < OLED_WIDTH + 1; i++) {
             this._i2c.writeByte(OLED_DATA, 0x00);
         }
     }
 }
 
-function printQrcode (isReverse) {
-    var that = this;
+function printQrcode(startX, startY, qrcode) {
     var xPos, yPos;
 
-    if (isReverse) {
-        that.clear(true);
-        that.setXY(qrcode.startX, qrcode.startY);
-        for (yPos = 0; yPos < Math.ceil(qrcode.height / 8); yPos++) {
-            that.setXY(qrcode.startX, qrcode.startY + yPos);
-            for (xPos = 0; xPos < qrcode.width; xPos++) {
-                that._i2c.writeByte(OLED_DATA, 0xFF - qrcode.qrcode[xPos + yPos * qrcode.width]);
-            }
-        }
-    } else {
-        that.clear();
-        that.setXY(qrcode.startX, qrcode.startY);
-        for (yPos = 0; yPos < Math.ceil(qrcode.height / 8); yPos++) {
-            that.setXY(qrcode.startX, qrcode.startY + yPos);
-            for (xPos = 0; xPos < qrcode.width; xPos++) {
-                that._i2c.writeByte(OLED_DATA, qrcode.qrcode[xPos + yPos * qrcode.width]);
-            }
+    this.clear(true);
+    this.setXY(startX, startY);
+    for (yPos = 0; yPos < Math.floor(qrcode.height / 8); yPos++) {
+        this.setXY(startX, startY + yPos);
+        for (xPos = 0; xPos < qrcode.width; xPos++) {
+            this._i2c.writeByte(OLED_DATA, 0xFF - qrcode.qrcode[xPos + yPos * qrcode.width]);
         }
     }
 }

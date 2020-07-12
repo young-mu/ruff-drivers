@@ -30,7 +30,7 @@
     "test": "ruff ./test/test.js"
   },
   "devDependencies": {
-    "eslint": "^3.0.1",
+    "eslint": "^7.4.0",
     "ruff-standard": "^0.1.6"
   },
   "ruff": {

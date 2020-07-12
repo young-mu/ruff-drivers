@@ -29,6 +29,7 @@ module.exports = driver({
                 function (error, values) {
                     if (error) {
                         callback(error);
+                        return;
                     }
 
                     var temperature = values[0] / 10;

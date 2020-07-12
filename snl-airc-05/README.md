@@ -2,12 +2,12 @@
 
 ## Device Model
 
-- [SNL-AIRC-05THEPVF](https://rap.ruff.io/devices/snl-airc-05)
+- [SNL-AIRC-05THEPVF](https://rap.ruff.io/devices/SNL-AIRC-05THEPVF)
 
 ## Installation
 
 ```sh
-> rap device add --model snl-airc-05 --id <device-id>
+> rap device add --model SNL-AIRC-05THEPVF --id <device-id>
 ```
 
 ## Demo

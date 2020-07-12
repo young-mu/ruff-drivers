@@ -1,6 +1,6 @@
 {
     "name": "snl-airc-05",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Air quality sensor",
     "author": "Young",
     "main": "src/index.js",

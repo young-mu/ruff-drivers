@@ -40,8 +40,8 @@ $('#air-sensor').readData(function (error, temp, hum, pm1, pm25, pm10, hcho, tvo
 | `pm1` | PM1.0 | 1 | ug/m3 |
 | `pm2_5` | PM2.5 | 1 | ug/m3 |
 | `pm10` | PM10 | 1 | ug/m3 |
-| `hcho` | 甲醛 | 1 | ug/m3 |
-| `tvoc` | 可挥发性有机物 | 1 | ug/m3 |
+| `hcho` | 甲醛 | 0.001 | mg/m3 |
+| `tvoc` | 可挥发性有机物 | 0.001 | mg/m3 |
 | `co2` | 二氧化碳 | 1 | ppm |
 
 ## Supported OS

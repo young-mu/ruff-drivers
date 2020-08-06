@@ -1,0 +1,7 @@
+{
+    "name": "kob-bell",
+    "version": "0.1.0",
+    "description": "Door bell",
+    "author": "Young",
+    "main": "src/index.js"
+}

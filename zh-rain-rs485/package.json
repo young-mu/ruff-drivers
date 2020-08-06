@@ -1,0 +1,12 @@
+{
+    "name": "zh-rain-rs485",
+    "version": "0.1.0",
+    "description": "rain detector with RS485 interface",
+    "author": "Young",
+    "main": "src/index.js",
+    "ruff": {
+        "dependencies": {
+            "modbus-rtu-master": "^0.3.0"
+        }
+    }
+}

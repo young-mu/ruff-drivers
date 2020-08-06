@@ -2,12 +2,12 @@
 
 ## Device Model
 
-- [KOB-BELL](https://rap.ruff.io/devices/KOB-BELL)
+- [BELL](https://rap.ruff.io/devices/BELL)
 
 ## Install
 
 ```sh
-> rap device add --model KOB-BELL --id <device-id>
+> rap device add --model BELL --id <device-id>
 ```
 
 ## Demo

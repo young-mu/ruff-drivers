@@ -14,9 +14,10 @@ module.exports = driver({
     exports: {
         ring: function () {
             this._gpio.write(Level.high);
+            var that = this;
             setTimeout(function () {
-                this._gpio.write(Level.low);
-            }, 1000);
+                that._gpio.write(Level.low);
+            }, 2000);
         }
     }
 

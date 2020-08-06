@@ -1,6 +1,6 @@
 {
     "models": [
-        "KOB-BELL"
+        "BELL"
     ],
     "inputs": {
         "gpio": {

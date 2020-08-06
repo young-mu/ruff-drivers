@@ -2,7 +2,7 @@
 
 ## Device Model
 
-- [ZH-RAIN-RS485}](https://rap.ruff.io/devices/ZH-RAIN-RS485)
+- [ZH-RAIN-RS485](https://rap.ruff.io/devices/ZH-RAIN-RS485)
 
 ## Install
 
